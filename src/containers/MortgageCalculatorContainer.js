@@ -4,7 +4,7 @@ import Form from '../components/Form';
 
 const MortgageCalculatorContainer = () => {
     const [combinedSalary, setCombinedSalary] = useState(0);
-    const [deposit, setDeposit] = useState(0);
+    const [deposit, setDeposit] = useState("");
     const [mortgageValue, setMortgageValue] = useState(0);
 
     const addDeposit = function(submittedDeposit) {
