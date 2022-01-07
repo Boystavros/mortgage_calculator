@@ -3,21 +3,26 @@ import Form from '../components/Form';
 
 
 const MortgageCalculatorContainer = () => {
-    const [combinedSalary, setCombinedSalary] = useState("0");
-    const [mortgageValue, setMortgageValue] = useState("0");
+    const [combinedSalary, setCombinedSalary] = useState(0);
+    const [deposit, setDeposit] = useState(0);
+    const [mortgageValue, setMortgageValue] = useState(0);
+
+    const addDeposit = function(submittedDeposit) {
+        setDeposit(submittedDeposit);
+    };
 
     const addCombinedSalary = function(submittedSalary) {
-        setCombinedSalary(submittedSalary)
+        setCombinedSalary(submittedSalary);
     };
 
     useEffect(() => {
-        setMortgageValue(combinedSalary * 3.4)
+        setMortgageValue(combinedSalary * 3.4 + deposit)
     },[combinedSalary]);
 
     return (
         <>
             <h1>Mortgage Calculator</h1>
-            <Form onFormSubmit={addCombinedSalary}/>
+            <Form addCombinedSalary={addCombinedSalary} addDeposit={addDeposit} deposit={deposit}/>
             <h2>Maximum mortgage value: {mortgageValue}</h2>
         </>
     )

@@ -5,6 +5,6 @@ function App() {
   return (
     <MortgageCalculatorContainer/>
   );
-}
+};
 
 export default App;
