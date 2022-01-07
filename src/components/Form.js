@@ -1,35 +1,43 @@
 import React, {useState} from 'react';
 
 
-const Form = () => {
-    const [salaries, setSalaries] = useState({
-        salary1 : "",
-        salary2 : ""
-    });
+const Form = ({onFormSubmit}) => {
+    const [salary1, setSalary1] = useState(0);
+    const [salary2, setSalary2] = useState(0);
 
-    const handleChange = function(event) {
-        console.log(event);
-        const newData 
-        // setSalaries()
+    const handleChangeSalary1 = function(event) {
+        !event.target.value ? setSalary1(0) : setSalary1(parseInt(event.target.value));
+    };
+
+    const handleChangeSalary2 = function(event) {
+        !event.target.value ? setSalary2(0) : setSalary2(parseInt(event.target.value));
+    };
+
+    const handleFormSubmit = function(event) {
+        event.preventDefault();
+        const salaryTotal = salary1 + salary2;
+        onFormSubmit(salaryTotal);
+        setSalary1(0);
+        setSalary2(0);
     };
     
 
 // handle form change
     return (
-        <form>
+        <form onSubmit={handleFormSubmit}>
             <input 
             type="text"
-            placeholder="Your salary"
-            onChange={handleChange}
+            placeholder="Salary 1"
+            onChange={handleChangeSalary1}
             />
             <input
             type="text"
-            placeholder="Your partner's salary"
-            onChange={handleChange}
+            placeholder="Salary 2 (Optional)"
+            onChange={handleChangeSalary2}
             />
             <input type="submit" value="Submit"/>
         </form>
-    )
+    );
 
 };
 
