@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 
 
-const Form = ({addCombinedSalary, addDeposit, deposit}) => {
+const Form = ({addCombinedSalary, addDeposit}) => {
     const [salary1, setSalary1] = useState("");
     const [salary2, setSalary2] = useState("");
+    const [formDeposit, setFormDeposit] = useState("");
 
     const handleChangeSalary1 = function(event) {
         !event.target.value ? setSalary1(0) : setSalary1(parseInt(event.target.value));
@@ -14,13 +15,14 @@ const Form = ({addCombinedSalary, addDeposit, deposit}) => {
     };
 
     const handleChangeDeposit = function(event) {
-        !event.target.value ? addDeposit(0) : addDeposit(parseInt(event.target.value));
+        !event.target.value ? setFormDeposit(0) : setFormDeposit(parseInt(event.target.value));
     }
 
     const handleFormSubmit = function(event) {
         event.preventDefault();
         const salaryTotal = salary1 + salary2;
         addCombinedSalary(salaryTotal);
+        addDeposit(formDeposit);
         // setSalary1(0);
         // setSalary2(0);
     };
@@ -43,7 +45,7 @@ const Form = ({addCombinedSalary, addDeposit, deposit}) => {
             <input
             type="text"
             placeholder="Deposit"
-            value={deposit}
+            value={formDeposit}
             onChange={handleChangeDeposit}
             />
             <input type="submit" value="Submit"/>

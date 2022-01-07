@@ -4,7 +4,7 @@ import Form from '../components/Form';
 
 const MortgageCalculatorContainer = () => {
     const [combinedSalary, setCombinedSalary] = useState(0);
-    const [deposit, setDeposit] = useState("");
+    const [deposit, setDeposit] = useState(0);
     const [mortgageValue, setMortgageValue] = useState(0);
 
     const addDeposit = function(submittedDeposit) {
@@ -17,12 +17,12 @@ const MortgageCalculatorContainer = () => {
 
     useEffect(() => {
         setMortgageValue(combinedSalary * 3.4 + deposit)
-    },[combinedSalary]);
+    },[combinedSalary, deposit]);
 
     return (
         <>
             <h1>Mortgage Calculator</h1>
-            <Form addCombinedSalary={addCombinedSalary} addDeposit={addDeposit} deposit={deposit}/>
+            <Form addCombinedSalary={addCombinedSalary} addDeposit={addDeposit} />
             <h2>Maximum mortgage value: {mortgageValue}</h2>
         </>
     )
